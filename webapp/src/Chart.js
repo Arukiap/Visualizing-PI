@@ -24,7 +24,7 @@ const Chart = ({ pointsData, width, height, margins, ...remainingProps }) => {
         .attr("transform", "translate(0," + plotHeight + ")")
         .call(d3.axisBottom(xAxis));
 
-      //Create Y axis in range [0,1] and appeng it to plot container
+      //Create Y axis in range [0,1] and append it to plot container
       const yAxis = d3.scaleLinear().domain([0, 1]).range([0, plotHeight]);
       svgElement
         .append("g")
@@ -52,7 +52,7 @@ const Chart = ({ pointsData, width, height, margins, ...remainingProps }) => {
         .attr("cy", (point) => xAxis(point.y))
         .attr("r", 2)
         .style("fill", ({ isInsideCircle }) =>
-          isInsideCircle ? "green" : "red"
+          isInsideCircle ? "185bf1" : "red"
         )
         .style("opacity", 0);
 
@@ -62,7 +62,7 @@ const Chart = ({ pointsData, width, height, margins, ...remainingProps }) => {
         .transition()
         .duration(250)
         .ease(d3.easeCircleIn)
-        .style("opacity", 1);
+        .style("opacity", 0.5);
     }
   }, [height, left, plotHeight, plotWidth, pointsData, top, width]);
 
