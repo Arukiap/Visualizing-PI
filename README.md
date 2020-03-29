@@ -4,7 +4,7 @@ Visualizing PI is an experimental SPA built in order to dive myself into the [D3
 
 In the application, the user will be using the Monte Carlo method in order to estimate the famous mathematical constant of 𝜋. Additionally, he is able to interact with the computations and also able to visualize the approximation method in a colored graph plot.
 
-![Image](fullpagescreen.png)
+![Image](webapp/public/recording.gif)
 
 In order to run the application please follow these three simple steps:
 
