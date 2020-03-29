@@ -1,13 +1,11 @@
 import React, { useMemo, useState } from "react";
-
-import "./App.css";
-
 import styled from "@emotion/styled";
 
 import Chart from "./Chart";
 import RangeSlider from "./RangeSlider";
 
 import * as colors from "./colors";
+import "./App.css";
 
 const CenteredDiv = styled.div`
   position: relative;
@@ -105,19 +103,19 @@ const isPointInsideCircle = (x, y) => {
 };
 
 const App = () => {
-  const [selectedPointsCount, setSelectedPointsCount] = useState(
+  const [pointsCount, setPointsCount] = useState(
     DEFAULT_POINTS_SAMPLE_COUNT
   );
-  const [pointsCount, setPointsCount] = useState(DEFAULT_POINTS_SAMPLE_COUNT);
+  const [rangeValue, setRangeValue] = useState(DEFAULT_POINTS_SAMPLE_COUNT);
 
   const pointsData = useMemo(() => {
-    const pointsArray = new Array(selectedPointsCount).fill();
+    const pointsArray = new Array(pointsCount).fill();
     return pointsArray.map(() => {
       const x = Math.random();
       const y = Math.random();
       return { x, y, isInsideCircle: isPointInsideCircle(x, y) };
     });
-  }, [selectedPointsCount]);
+  }, [pointsCount]);
 
   const piEstimate = useMemo(() => {
     const insideCirclePointCount = pointsData.reduce(
@@ -129,16 +127,16 @@ const App = () => {
     );
     return (
       (1 / (CIRCLE_RADIUS * CIRCLE_RADIUS)) *
-      (insideCirclePointCount / selectedPointsCount)
+      (insideCirclePointCount / pointsCount)
     );
-  }, [pointsData, selectedPointsCount]);
+  }, [pointsData, pointsCount]);
 
   const handleRangeChange = (e) => {
-    setPointsCount(parseInt(e.target.value));
+    setRangeValue(parseInt(e.target.value));
   };
 
   const handleOnMouseUp = (e) => {
-    setSelectedPointsCount(parseInt(e.target.value));
+    setPointsCount(parseInt(e.target.value));
   };
 
   return (
@@ -184,7 +182,7 @@ const App = () => {
           0.25𝜋.
           <br />
           <br />
-          We then generate <b>{selectedPointsCount}</b> uniformly distributed
+          We then generate <b>{pointsCount}</b> uniformly distributed
           random points and plot them.
           <br />
           <br />
@@ -208,7 +206,7 @@ const App = () => {
           height={PLOT_DIMENSION}
         />
         <RangeSlider
-          value={pointsCount}
+          value={rangeValue}
           onChange={handleRangeChange}
           onMouseUp={handleOnMouseUp}
           min={SLIDER_MIN}
