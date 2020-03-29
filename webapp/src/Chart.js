@@ -25,11 +25,8 @@ const Chart = ({ pointsData, width, height, margins, ...remainingProps }) => {
         .call(d3.axisBottom(xAxis));
 
       //Create Y axis in range [0,1] and append it to plot container
-      const yAxis = d3.scaleLinear().domain([0, 1]).range([0, plotHeight]);
-      svgElement
-        .append("g")
-        .attr("transform", "translate(" + plotHeight + "),0)")
-        .call(d3.axisLeft(yAxis));
+      const yAxis = d3.scaleLinear().domain([1, 0]).range([0, plotHeight]);
+      svgElement.append("g").call(d3.axisLeft(yAxis));
 
       //Create circle path and append it to plot
       svgElement
@@ -49,7 +46,7 @@ const Chart = ({ pointsData, width, height, margins, ...remainingProps }) => {
         .enter()
         .append("circle")
         .attr("cx", (point) => xAxis(point.x))
-        .attr("cy", (point) => xAxis(point.y))
+        .attr("cy", (point) => yAxis(point.y))
         .attr("r", 2)
         .style("fill", ({ isInsideCircle }) =>
           isInsideCircle ? "185bf1" : "red"

@@ -1,7 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Expression, toTex } from "algebra.js";
 
-import logo from "./logo.svg";
 import "./App.css";
 
 import styled from "@emotion/styled";
@@ -203,7 +201,7 @@ const App = () => {
         </Paragraph>
       </ExplanationSection>
       <ChartSection>
-        <PiEstimatorH2>{`π = ${piEstimate}`}</PiEstimatorH2>
+        <PiEstimatorH2>{`𝜋 = ${piEstimate}`}</PiEstimatorH2>
         <StyledChart
           pointsData={pointsData}
           width={PLOT_DIMENSION}
